@@ -3,21 +3,14 @@ const Robot = require("./Robot")
 
 const parseRobot = (inputLines) => {
 
-  if(inputLines.length === 0) {
-    return null;
-  }
-
   if(inputLines[0].trim() == "") {
-    console.log(inputLines.slice(1))
     return parseRobot(inputLines.slice(1))
   } 
 
-  const positionParts = inputLines[0].split(" ")
+  const positionParts = inputLines[0].trim().split(" ")
   const positionX = Number(positionParts[0])
   const positionY = Number(positionParts[1])
   const orientation = positionParts[2]
-
-  console.log(orientation)
   
   const robot = new Robot({position: {x: positionX, y: positionY}, orientation: orientation})
 
@@ -37,7 +30,7 @@ const parseRobot = (inputLines) => {
 
 } 
 
-const simulateRobots = (robotsInput) => {
+const parseRobotsAndGrid = (robotsInput) => {
   const robotsLines = robotsInput.split("\n");
   const gridSize = robotsLines[0].split(" ");
   const gridSizeX = Number(gridSize[0]);
@@ -45,7 +38,20 @@ const simulateRobots = (robotsInput) => {
 
   const marsRobotSim = new MarsRobotSim({gridSize: {x: gridSizeX, y: gridSizeY}});
 
-  const nextRobot = parseRobot(robotsLines.slice(1));
+  let robotsWithCommands = []
+
+  let remainingInput = robotsLines.slice(1)
+
+  while(remainingInput.length > 0) {
+    let nextRobot = parseRobot(remainingInput);
+    robotsWithCommands.push({
+      robot: nextRobot.robot,
+      commandString: nextRobot.commandString
+    })
+    remainingInput = nextRobot.remainingInput;
+  } 
+
+  return {marsRobotSim, robotsWithCommands};
 }
 
-module.exports =  { simulateRobots, parseRobot };
+module.exports =  { parseRobotsAndGrid, parseRobot };
