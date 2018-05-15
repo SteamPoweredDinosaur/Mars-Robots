@@ -29,9 +29,6 @@ class Robot {
   }
 
   moveForward() {
-
-    console.log(this.position)
-
     switch(this.getOrientation()) {
       case "N": 
         this.position.y += 1; 
