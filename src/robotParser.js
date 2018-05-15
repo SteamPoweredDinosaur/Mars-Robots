@@ -42,7 +42,7 @@ const parseRobotsAndGrid = (robotsInput) => {
 
   let remainingInput = robotsLines.slice(1)
 
-  while(remainingInput.length > 0) {
+  while(remainingInput.length > 1) {
     let nextRobot = parseRobot(remainingInput);
     robotsWithCommands.push({
       robot: nextRobot.robot,
