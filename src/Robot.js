@@ -28,8 +28,32 @@ class Robot {
     }
   }
 
+  moveForward() {
+
+    console.log(this.position)
+
+    switch(this.getOrientation()) {
+      case "N": 
+        this.position.y += 1; 
+        break;
+      case "E": 
+        this.position.x += 1; 
+        break;
+      case "S": 
+        this.position.y -= 1; 
+        break;
+      case "W": 
+        this.position.x -= 1; 
+        break;
+    }
+  }
+
   getOrientation() {
     return orientationOrder[this.orientation]
+  }
+
+  getPosition() {
+    return this.position;
   }
 }
 
