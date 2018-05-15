@@ -8,7 +8,7 @@ class Robot {
     this.orientation = orientationOrder.indexOf(orientation);
 
     if(this.orientation === -1) {
-      throw Error(`Passed ${this.orientation} for orientation but this value is unknown must be one of ${orientationOrder}`)
+      throw Error(`Passed ${orientation} for orientation but this value is unknown must be one of ${orientationOrder}`)
     }
   }
 

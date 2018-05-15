@@ -1,6 +1,7 @@
 class MarsRobotSim {
   
-  constructor() {
+  constructor({gridSize}) {
+    this.gridSize = gridSize;
     this.robots = [];
   }
 

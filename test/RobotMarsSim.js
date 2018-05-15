@@ -30,4 +30,11 @@ describe("MarsRobotSim", () => {
     expect(marsRobotSim.robots[0].getPosition().x).to.equal(1);
     expect(marsRobotSim.robots[0].getPosition().y).to.equal(0);
   })
+
+  it("Should be able to initalize a grid of a specified size", () => {
+    const marsRobotSim = new MarsRobotSim({gridSize: {x: 5, y: 3}});
+    expect(marsRobotSim.gridSize.x).to.equal(5)
+    expect(marsRobotSim.gridSize.y).to.equal(3)
+
+  })
 })
